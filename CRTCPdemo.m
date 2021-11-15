@@ -1,10 +1,11 @@
+slCharacterEncoding='UTF-8'
+
 APIClient=tcpip('192.168.5.1',29999,'NetworkRole','client');
 MoveClient=tcpip('192.168.5.1',30003,'NetworkRole','client');
 stateClient = tcpip('192.168.5.1',30004,'NetworkRole','client');
 %连接
 set(stateClient,'InputBufferSize',1440);
 set(stateClient,'Timeout',30);
-
 set(APIClient,'InputBufferSize',100);
 set(APIClient,'Timeout',30);
 
@@ -15,7 +16,7 @@ fopen(stateClient);
 fopen(APIClient);
 fopen(MoveClient);
 
-
+global stateDataArray;
 
 stateTimer = timer('TimerFcn', {@TimerFcn1,stateClient}, 'Period', 2, 'ExecutionMode', 'fixedRate');
 
@@ -27,8 +28,57 @@ while(string(messageInput)~='quit')
         fprintf("some one need help\n");
         fprintf("please input Dobot CR TCP-IP protocol command to control CR\n")
         fprintf("sucha as:\'EnableRobot\'\n");
-        fprintf("input quit to close demo\n")
+        fprintf("input 'quit' to close demo\n")
+        fprintf("input 'stauts' to look at robot status\n")
         fprintf("if you want to kown what comand can be used in this demo please input \'list\'\n")
+    elseif strcmp(messageInput,'status')
+        byteLen1=stateDataArray(1,1);
+        byteLen2=stateDataArray(2,1);
+        byteLen=byteLen1+byteLen2*256;
+        fprintf("status array size len:%d\n",byteLen);
+        robotMode="ROBOT_MODE_NO_CONTROLLER";
+        switch stateDataArray(25,1)
+            case -1
+                robotMode="ROBOT_MODE_NO_CONTROLLER";
+            case 0
+                robotMode="ROBOT_MODE_DISCONNECTED";
+            case 1
+                robotMode="ROBOT_MODE_CONFIRM_SAFETY";
+            case 2
+                robotMode="ROBOT_MODE_BOOTING";
+            case 3
+                robotMode="ROBOT_MODE_POWER_OFF";
+            case 4
+                robotMode="ROBOT_MODE_POWER_ON";
+            case 5
+                robotMode="ROBOT_MODE_IDLE";
+            case 6
+                robotMode="ROBOT_MODE_BACKDRIVE";
+            case 7
+                robotMode="ROBOT_MODE_RUNNING";
+            case 8
+                robotMode="ROBOT_MODE_UPDATING_FIRMWARE";
+            case 9
+                robotMode="ROBOT_MODE_ERROR";
+        end
+        fprintf("Robot mode:%s\n",robotMode);
+        fprintf("IO Input value:%d %d %d %d %d %d %d %d \n",stateDataArray(9,1),stateDataArray(10,1),stateDataArray(11,1),stateDataArray(12,1),stateDataArray(13,1),stateDataArray(14,1),stateDataArray(15,1),stateDataArray(16,1));
+        fprintf("IO Output value:%d %d %d %d %d %d %d %d \n",stateDataArray(17,1),stateDataArray(18,1),stateDataArray(19,1),stateDataArray(20,1),stateDataArray(21,1),stateDataArray(22,1),stateDataArray(23,1),stateDataArray(24,1));
+        fprintf("Speed scaling:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(72,1))),dec2hex(char(stateDataArray(71,1))),dec2hex(char(stateDataArray(70,1))),dec2hex(char(stateDataArray(69,1))),dec2hex(char(stateDataArray(68,1))),dec2hex(char(stateDataArray(67,1))),dec2hex(char(stateDataArray(66,1))),dec2hex(char(stateDataArray(65,1))))));
+        fprintf("joint actual j1:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(440,1))),dec2hex(char(stateDataArray(439,1))),dec2hex(char(stateDataArray(438,1))),dec2hex(char(stateDataArray(437,1))),dec2hex(char(stateDataArray(436,1))),dec2hex(char(stateDataArray(435,1))),dec2hex(char(stateDataArray(434,1))),dec2hex(char(stateDataArray(433,1))))));
+        fprintf("joint actual j2:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(448,1))),dec2hex(char(stateDataArray(447,1))),dec2hex(char(stateDataArray(446,1))),dec2hex(char(stateDataArray(445,1))),dec2hex(char(stateDataArray(444,1))),dec2hex(char(stateDataArray(443,1))),dec2hex(char(stateDataArray(442,1))),dec2hex(char(stateDataArray(441,1))))));
+        fprintf("joint actual j3:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(456,1))),dec2hex(char(stateDataArray(455,1))),dec2hex(char(stateDataArray(454,1))),dec2hex(char(stateDataArray(453,1))),dec2hex(char(stateDataArray(452,1))),dec2hex(char(stateDataArray(451,1))),dec2hex(char(stateDataArray(450,1))),dec2hex(char(stateDataArray(449,1))))));
+        fprintf("joint actual j4:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(464,1))),dec2hex(char(stateDataArray(463,1))),dec2hex(char(stateDataArray(462,1))),dec2hex(char(stateDataArray(461,1))),dec2hex(char(stateDataArray(460,1))),dec2hex(char(stateDataArray(459,1))),dec2hex(char(stateDataArray(458,1))),dec2hex(char(stateDataArray(457,1))))));
+        fprintf("joint actual j5:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(472,1))),dec2hex(char(stateDataArray(471,1))),dec2hex(char(stateDataArray(470,1))),dec2hex(char(stateDataArray(469,1))),dec2hex(char(stateDataArray(468,1))),dec2hex(char(stateDataArray(467,1))),dec2hex(char(stateDataArray(466,1))),dec2hex(char(stateDataArray(465,1))))));
+        fprintf("joint actual j6:%d\n",hex2num(strcat(dec2hex(char(stateDataArray(480,1))),dec2hex(char(stateDataArray(479,1))),dec2hex(char(stateDataArray(478,1))),dec2hex(char(stateDataArray(477,1))),dec2hex(char(stateDataArray(476,1))),dec2hex(char(stateDataArray(475,1))),dec2hex(char(stateDataArray(474,1))),dec2hex(char(stateDataArray(473,1))))));
+        
+        fprintf("cartesian actual x:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(632,1))),dec2hex(char(stateDataArray(631,1))),dec2hex(char(stateDataArray(630,1))),dec2hex(char(stateDataArray(629,1))),dec2hex(char(stateDataArray(628,1))),dec2hex(char(stateDataArray(629,1))),dec2hex(char(stateDataArray(628,1))),dec2hex(char(stateDataArray(625,1))))));
+        fprintf("cartesian actual y:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(640,1))),dec2hex(char(stateDataArray(639,1))),dec2hex(char(stateDataArray(638,1))),dec2hex(char(stateDataArray(637,1))),dec2hex(char(stateDataArray(636,1))),dec2hex(char(stateDataArray(635,1))),dec2hex(char(stateDataArray(634,1))),dec2hex(char(stateDataArray(633,1))))));
+        fprintf("cartesian actual z:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(648,1))),dec2hex(char(stateDataArray(647,1))),dec2hex(char(stateDataArray(646,1))),dec2hex(char(stateDataArray(645,1))),dec2hex(char(stateDataArray(644,1))),dec2hex(char(stateDataArray(643,1))),dec2hex(char(stateDataArray(642,1))),dec2hex(char(stateDataArray(641,1))))));
+        fprintf("cartesian actual rx:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(656,1))),dec2hex(char(stateDataArray(655,1))),dec2hex(char(stateDataArray(654,1))),dec2hex(char(stateDataArray(653,1))),dec2hex(char(stateDataArray(652,1))),dec2hex(char(stateDataArray(651,1))),dec2hex(char(stateDataArray(650,1))),dec2hex(char(stateDataArray(649,1))))));
+        fprintf("cartesian actual ry:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(664,1))),dec2hex(char(stateDataArray(663,1))),dec2hex(char(stateDataArray(662,1))),dec2hex(char(stateDataArray(661,1))),dec2hex(char(stateDataArray(660,1))),dec2hex(char(stateDataArray(659,1))),dec2hex(char(stateDataArray(658,1))),dec2hex(char(stateDataArray(657,1))))));
+        fprintf("cartesian actual rz:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(672,1))),dec2hex(char(stateDataArray(671,1))),dec2hex(char(stateDataArray(670,1))),dec2hex(char(stateDataArray(669,1))),dec2hex(char(stateDataArray(668,1))),dec2hex(char(stateDataArray(667,1))),dec2hex(char(stateDataArray(666,1))),dec2hex(char(stateDataArray(665,1))))));
+    
     elseif messageInput=="list"
         fprintf("the comand you can use in this demo\n");
         fprintf("EnableRobot\n");
@@ -93,9 +143,10 @@ while(string(messageInput)~='quit')
         coordinate=input('need input cartesian coordinates such as 0.56,26.65,160.23,-50.14,68.923 (split by ,):','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',"-1")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -106,9 +157,10 @@ while(string(messageInput)~='quit')
         coordinate=input('need input joint coordinates such as 0.56,26.65,160.23,-50.14,68.923 (split by ,):','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',"-1")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -119,9 +171,10 @@ while(string(messageInput)~='quit')
         coordinate=input('need input offset coordinates such as 0.56,26.65,160.23,-50.14,68.923 (split by ,):','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',"-1")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -136,9 +189,10 @@ while(string(messageInput)~='quit')
         status=input('need input stauts(0-low , 1-high ,):','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',"-1")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -161,9 +215,10 @@ while(string(messageInput)~='quit')
         coordinate2=input('need input cartesian coordinates 2 such as 0.56,26.65,160.23,-50.14,68.923 (split by ,):','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',"-1")
             %do movJ
             if messageInput =="Circle"
                 messageInput=strcat(messageInput,"(");
@@ -178,26 +233,32 @@ while(string(messageInput)~='quit')
             messageInput=strcat(messageInput,")");
             fwrite(MoveClient,char(messageInput),'char');
         end
-    elseif messageInput =="MoveJog" 
+    elseif messageInput =="MoveJog"
         mode=input('need input MoveJog mode(j1+,j2+,j3+,j4+,j5+,j6+,j1-,j2-,j3-,j4-,j5-,j6-\n,x+,y+,z+,rx+,ry+,rz+,x-,y-,z-,rx-,ry-,rz-):','s');
         manualVar=char('Manual()');
         fwrite(APIClient,manualVar,'char');
+        pause(1);
+        fprintf("MoveJog manual byte available:%d",APIClient.BytesAvailable);
         manualVarRes=fread(APIClient,APIClient.BytesAvailable);
         manualVarResStr=char(manualVarRes(1:end));
-        if string(manualVarResStr)=="Manual()"
+        manualVarResStr=manualVarResStr.';
+        if strcmp(manualVarResStr,"Manual()")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,mode);
             messageInput=strcat(messageInput,")");
             fwrite(MoveClient,char(messageInput),'char');
+            stopInput=input('If you want to stop or quit MoveJog,please click enter key','s');
+            fwrite(MoveClient,char('MoveJog()'),'char');
         end
     elseif messageInput =="StartPath"|| messageInput =="StartFCTrace"|| messageInput =="StartTrace"
         path=input('need input trace file path:','s');
         enableVar=char('EnableRobot()');
         fwrite(APIClient,enableVar,'char');
+        pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if string(movJEnableResStr)=="EnableRobot()"
+        if strcmp(movJEnableResStr.',-1)
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,path);
@@ -401,15 +462,21 @@ while(string(messageInput)~='quit')
         else
             messageInput=char(messageInput);
             fwrite(APIClient,messageInput,'char');
+            if strcmp(messageInput,'EnableRobot()')
+                fprintf("API %s need wait 5 seconds\n",messageInput);
+                pause(5);
+            else
+                pause(1);
+            end
             if APIClient.BytesAvailable>0
                 res=fread(APIClient,APIClient.BytesAvailable);
                 resStr=char(res(1:end));
-                fprintf("API %s Res:%s\n",messageInput,resStr);
+                fprintf("API %s Res:%s\n",messageInput,resStr.');
             else
                 fprintf("API %s no reply\n",messageInput);
             end
-            
             messageInput="";
+            
         end
     end
 end
@@ -425,8 +492,11 @@ clear MoveClient;
 clear stateClient;
 
 function TimerFcn1(obj,event,tInfo)
-% fprintf("do timer fnc1\n")
+global stateDataArray
+%fprintf("do timer fnc1:%d\n",stateDataArray);
 %你自己的操作
-stateDataArray = fread(tInfo, 1440);
+if tInfo.BytesAvailable>0
+    stateDataArray = fread(tInfo,tInfo.BytesAvailable,'uint8');
+end
 %  fprintf("connect info:%d\n",A)
 end
