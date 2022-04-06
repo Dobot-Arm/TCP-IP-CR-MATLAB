@@ -1,5 +1,8 @@
 English version of the README -> please [click here](./README-EN.md)
 
+## 关于版本匹配说明
+此Demo适用于CR系列的V3.5.2及以上控制器版本。
+
 ## DEMO说明文档
 
 本demo为使用Matlab库编写的一套给Matlab来控制CR机器人运动的脚本指令Demo
