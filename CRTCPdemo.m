@@ -2,21 +2,22 @@ slCharacterEncoding='UTF-8'
 
 APIClient=tcpip('192.168.5.1',29999,'NetworkRole','client');
 MoveClient=tcpip('192.168.5.1',30003,'NetworkRole','client');
-stateClient = tcpip('192.168.5.1',30004,'NetworkRole','client');
+stateClient = MoveClient;%tcpip('192.168.5.1',30003,'NetworkRole','client');
 %连接
 set(stateClient,'InputBufferSize',1440);
 set(stateClient,'Timeout',30);
 set(APIClient,'InputBufferSize',100);
 set(APIClient,'Timeout',30);
 
-set(MoveClient,'InputBufferSize',100);
-set(MoveClient,'Timeout',30);
+%set(MoveClient,'InputBufferSize',100);
+%set(MoveClient,'Timeout',30);
 
 fopen(stateClient);
 fopen(APIClient);
-fopen(MoveClient);
+%fopen(MoveClient);
 
 global stateDataArray;
+
 
 stateTimer = timer('TimerFcn', {@TimerFcn1,stateClient}, 'Period', 2, 'ExecutionMode', 'fixedRate');
 
@@ -78,7 +79,7 @@ while(string(messageInput)~='quit')
         fprintf("cartesian actual rx:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(656,1))),dec2hex(char(stateDataArray(655,1))),dec2hex(char(stateDataArray(654,1))),dec2hex(char(stateDataArray(653,1))),dec2hex(char(stateDataArray(652,1))),dec2hex(char(stateDataArray(651,1))),dec2hex(char(stateDataArray(650,1))),dec2hex(char(stateDataArray(649,1))))));
         fprintf("cartesian actual ry:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(664,1))),dec2hex(char(stateDataArray(663,1))),dec2hex(char(stateDataArray(662,1))),dec2hex(char(stateDataArray(661,1))),dec2hex(char(stateDataArray(660,1))),dec2hex(char(stateDataArray(659,1))),dec2hex(char(stateDataArray(658,1))),dec2hex(char(stateDataArray(657,1))))));
         fprintf("cartesian actual rz:%8.4f\n",hex2num(strcat(dec2hex(char(stateDataArray(672,1))),dec2hex(char(stateDataArray(671,1))),dec2hex(char(stateDataArray(670,1))),dec2hex(char(stateDataArray(669,1))),dec2hex(char(stateDataArray(668,1))),dec2hex(char(stateDataArray(667,1))),dec2hex(char(stateDataArray(666,1))),dec2hex(char(stateDataArray(665,1))))));
-    
+        
     elseif messageInput=="list"
         fprintf("the comand you can use in this demo\n");
         fprintf("EnableRobot\n");
@@ -146,7 +147,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',"-1")
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -160,8 +161,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',"-1")
-            %do movJ
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
             messageInput=strcat(messageInput,")");
@@ -174,7 +174,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',"-1")
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -192,7 +192,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',"-1")
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,coordinate);
@@ -218,7 +218,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',"-1")
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             %do movJ
             if messageInput =="Circle"
                 messageInput=strcat(messageInput,"(");
@@ -258,7 +258,7 @@ while(string(messageInput)~='quit')
         pause(5);
         movJEnableRes=fread(APIClient,APIClient.BytesAvailable);
         movJEnableResStr=char(movJEnableRes(1:end));
-        if strcmp(movJEnableResStr.',-1)
+        if strcmp(movJEnableResStr.',"EnableRobot()")
             %do movJ
             messageInput=strcat(messageInput,"(");
             messageInput=strcat(messageInput,path);
