@@ -1,106 +1,79 @@
-classdef CRMATLABDemo < matlab.apps.AppBase
+classdef CRMATLABDemo_mg400 < matlab.apps.AppBase
 
     % Properties that correspond to app components
     properties (Access = public)
-        UIFigure                      matlab.ui.Figure
-        LogPanel                      matlab.ui.container.Panel
-        LogTextArea                   matlab.ui.control.TextArea
-        FeedbackPanel                 matlab.ui.container.Panel
-        DigitalInputsLabel            matlab.ui.control.Label
-        DigitalOutputsLabel           matlab.ui.control.Label
-        CurrentSpeedRatioLabel        matlab.ui.control.Label
-        RobotModeLabel                matlab.ui.control.Label
-        rzText                        matlab.ui.control.Label
-        ryText                        matlab.ui.control.Label
-        rxText                        matlab.ui.control.Label
-        zText                         matlab.ui.control.Label
-        yText                         matlab.ui.control.Label
-        xText                         matlab.ui.control.Label
-        J6Text                        matlab.ui.control.Label
-        J5Text                        matlab.ui.control.Label
-        J4Text                        matlab.ui.control.Label
-        J3Text                        matlab.ui.control.Label
-        J2Text                        matlab.ui.control.Label
-        J1Text                        matlab.ui.control.Label
-        rzPlusButton                  matlab.ui.control.Button
-        ryPlusButton                  matlab.ui.control.Button
-        rxPlusButton                  matlab.ui.control.Button
-        zPlusButton                   matlab.ui.control.Button
-        yPlusButton                   matlab.ui.control.Button
-        xPlusButton                   matlab.ui.control.Button
-        rzMinusButton                 matlab.ui.control.Button
-        ryMinusButton                 matlab.ui.control.Button
-        rxMinusButton                 matlab.ui.control.Button
-        zMinusButton                  matlab.ui.control.Button
-        yMinusButton                  matlab.ui.control.Button
-        xMinusButton                  matlab.ui.control.Button
-        ErrorInfoPanel                matlab.ui.container.Panel
-        GetErrorIDButton              matlab.ui.control.Button
-        ErrorInfoTextArea             matlab.ui.control.TextArea
-        j6PlusButton                  matlab.ui.control.Button
-        j5PlusButton                  matlab.ui.control.Button
-        j4PlusButton                  matlab.ui.control.Button
-        j3PlusButton                  matlab.ui.control.Button
-        j2PlusButton                  matlab.ui.control.Button
-        j1PlusButton                  matlab.ui.control.Button
-        j6MinusButton                 matlab.ui.control.Button
-        j5MinusButton                 matlab.ui.control.Button
-        j4MinusButton                 matlab.ui.control.Button
-        j3MinusButton                 matlab.ui.control.Button
-        j2MinusButton                 matlab.ui.control.Button
-        j1MinusButton                 matlab.ui.control.Button
-        MoveFunctionPanel             matlab.ui.container.Panel
-        StopMoveButton                matlab.ui.control.Button
-        JointMovJButton               matlab.ui.control.Button
-        MovLButton                    matlab.ui.control.Button
-        MovJButton                    matlab.ui.control.Button
-        J6EditField                   matlab.ui.control.NumericEditField
-        J6EditFieldLabel              matlab.ui.control.Label
-        J5EditField                   matlab.ui.control.NumericEditField
-        J5EditFieldLabel              matlab.ui.control.Label
-        J4EditField                   matlab.ui.control.NumericEditField
-        J4EditFieldLabel              matlab.ui.control.Label
-        J3EditField                   matlab.ui.control.NumericEditField
-        J3EditFieldLabel              matlab.ui.control.Label
-        J2EditField                   matlab.ui.control.NumericEditField
-        J2EditFieldLabel              matlab.ui.control.Label
-        J1EditField                   matlab.ui.control.NumericEditField
-        J1EditFieldLabel              matlab.ui.control.Label
-        RZEditField                   matlab.ui.control.NumericEditField
-        RZEditFieldLabel              matlab.ui.control.Label
-        RYEditField                   matlab.ui.control.NumericEditField
-        RYEditFieldLabel              matlab.ui.control.Label
-        RXEditField                   matlab.ui.control.NumericEditField
-        RXEditFieldLabel              matlab.ui.control.Label
-        ZEditField                    matlab.ui.control.NumericEditField
-        ZLabel                        matlab.ui.control.Label
-        YEditField                    matlab.ui.control.NumericEditField
-        YLabel                        matlab.ui.control.Label
-        XEditField                    matlab.ui.control.NumericEditField
-        XEditFieldLabel               matlab.ui.control.Label
-        DashBoardFunctionPanel        matlab.ui.container.Panel
-        SpeedConfirmButton            matlab.ui.control.Button
-        DOConfirmButton               matlab.ui.control.Button
-        DOStatusDropDown              matlab.ui.control.DropDown
-        StatusDropDownLabel           matlab.ui.control.Label
-        DigitalOutputsIndexEditField  matlab.ui.control.EditField
-        DigitalOutputsIndexLabel      matlab.ui.control.Label
-        Label                         matlab.ui.control.Label
-        SpeedRatioEditField           matlab.ui.control.EditField
-        SpeedRatioLabel               matlab.ui.control.Label
-        ClearErrorButton              matlab.ui.control.Button
-        ResetRobotButton              matlab.ui.control.Button
-        EnableButton                  matlab.ui.control.Button
-        RobotConnectPanel             matlab.ui.container.Panel
-        ConnectButton                 matlab.ui.control.StateButton
-        FeedBackPortEditFieldLabel    matlab.ui.control.Label
-        FeedBackPortEditField         matlab.ui.control.EditField
-        MovePortEditFieldLabel        matlab.ui.control.Label
-        MovePortEditField             matlab.ui.control.EditField
-        DashboarPortEditFieldLabel    matlab.ui.control.Label
-        DashboarPortEditField         matlab.ui.control.EditField
-        IPAddressEditFieldLabel       matlab.ui.control.Label
-        IPAddressEditField            matlab.ui.control.EditField
+        UIFigure                    matlab.ui.Figure
+        LogPanel                    matlab.ui.container.Panel
+        LogTextArea                 matlab.ui.control.TextArea
+        FeedbackPanel               matlab.ui.container.Panel
+        CurrentSpeedRatioLabel      matlab.ui.control.Label
+        RobotModeLabel              matlab.ui.control.Label
+        rText                       matlab.ui.control.Label
+        zText                       matlab.ui.control.Label
+        yText                       matlab.ui.control.Label
+        xText                       matlab.ui.control.Label
+        J4Text                      matlab.ui.control.Label
+        J3Text                      matlab.ui.control.Label
+        J2Text                      matlab.ui.control.Label
+        J1Text                      matlab.ui.control.Label
+        rPlusButton                 matlab.ui.control.Button
+        zPlusButton                 matlab.ui.control.Button
+        yPlusButton                 matlab.ui.control.Button
+        xPlusButton                 matlab.ui.control.Button
+        rMinusButton                matlab.ui.control.Button
+        zMinusButton                matlab.ui.control.Button
+        yMinusButton                matlab.ui.control.Button
+        xMinusButton                matlab.ui.control.Button
+        ErrorInfoPanel              matlab.ui.container.Panel
+        GetErrorIDButton            matlab.ui.control.Button
+        ErrorInfoTextArea           matlab.ui.control.TextArea
+        j4PlusButton                matlab.ui.control.Button
+        j3PlusButton                matlab.ui.control.Button
+        j2PlusButton                matlab.ui.control.Button
+        j1PlusButton                matlab.ui.control.Button
+        j4MinusButton               matlab.ui.control.Button
+        j3MinusButton               matlab.ui.control.Button
+        j2MinusButton               matlab.ui.control.Button
+        j1MinusButton               matlab.ui.control.Button
+        MoveFunctionPanel           matlab.ui.container.Panel
+        StopMoveButton              matlab.ui.control.Button
+        JointMovJButton             matlab.ui.control.Button
+        MovLButton                  matlab.ui.control.Button
+        MovJButton                  matlab.ui.control.Button
+        J4EditField                 matlab.ui.control.NumericEditField
+        J4EditFieldLabel            matlab.ui.control.Label
+        J3EditField                 matlab.ui.control.NumericEditField
+        J3EditFieldLabel            matlab.ui.control.Label
+        J2EditField                 matlab.ui.control.NumericEditField
+        J2EditFieldLabel            matlab.ui.control.Label
+        J1EditField                 matlab.ui.control.NumericEditField
+        J1EditFieldLabel            matlab.ui.control.Label
+        REditField                  matlab.ui.control.NumericEditField
+        REditFieldLabel             matlab.ui.control.Label
+        ZEditField                  matlab.ui.control.NumericEditField
+        ZLabel                      matlab.ui.control.Label
+        YEditField                  matlab.ui.control.NumericEditField
+        YLabel                      matlab.ui.control.Label
+        XEditField                  matlab.ui.control.NumericEditField
+        XEditFieldLabel             matlab.ui.control.Label
+        DashBoardFunctionPanel      matlab.ui.container.Panel
+        SpeedConfirmButton          matlab.ui.control.Button
+        Label                       matlab.ui.control.Label
+        SpeedRatioEditField         matlab.ui.control.EditField
+        SpeedRatioLabel             matlab.ui.control.Label
+        ClearErrorButton            matlab.ui.control.Button
+        ResetRobotButton            matlab.ui.control.Button
+        EnableButton                matlab.ui.control.Button
+        RobotConnectPanel           matlab.ui.container.Panel
+        ConnectButton               matlab.ui.control.StateButton
+        FeedBackPortEditFieldLabel  matlab.ui.control.Label
+        FeedBackPortEditField       matlab.ui.control.EditField
+        MovePortEditFieldLabel      matlab.ui.control.Label
+        MovePortEditField           matlab.ui.control.EditField
+        DashboarPortEditFieldLabel  matlab.ui.control.Label
+        DashboarPortEditField       matlab.ui.control.EditField
+        IPAddressEditFieldLabel     matlab.ui.control.Label
+        IPAddressEditField          matlab.ui.control.EditField
     end
 
 
@@ -165,18 +138,11 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.J2Text.Text=""+app.TransBytes2Double(441);
             app.J3Text.Text=""+app.TransBytes2Double(449);
             app.J4Text.Text=""+app.TransBytes2Double(457);
-            app.J5Text.Text=""+app.TransBytes2Double(465);
-            app.J6Text.Text=""+app.TransBytes2Double(473);
-
+          
             app.xText.Text=""+app.TransBytes2Double(625);
             app.yText.Text=""+app.TransBytes2Double(633);
             app.zText.Text=""+app.TransBytes2Double(641);
-            app.rxText.Text=""+app.TransBytes2Double(649);
-            app.ryText.Text=""+app.TransBytes2Double(657);
-            app.rzText.Text=""+app.TransBytes2Double(665);
-
-            app.DigitalInputsLabel.Text="Digital Inputs:"+app.StateDataArray(1,9)+","+app.StateDataArray(1,10)+","+app.StateDataArray(1,11)+","+app.StateDataArray(1,12)+","+app.StateDataArray(1,13)+","+app.StateDataArray(1,14)+","+app.StateDataArray(1,15)+","+app.StateDataArray(1,16);
-            app.DigitalOutputsLabel.Text="Digital Outputs:"+app.StateDataArray(1,17)+","+app.StateDataArray(1,18)+","+app.StateDataArray(1,19)+","+app.StateDataArray(1,20)+","+app.StateDataArray(1,21)+","+app.StateDataArray(1,22)+","+app.StateDataArray(1,23)+","+app.StateDataArray(1,24);
+            app.rText.Text=""+app.TransBytes2Double(649);
         end
     end
 
@@ -300,31 +266,22 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.LogTextArea.Value{end+1}=char(sprintf("Receive:%s",res));
         end
 
-        % Button pushed function: DOConfirmButton
-        function DOConfirmButtonPushed(app, event)
-            app.LogTextArea.Value{end+1}=char(sprintf("Send:DOExecute(%s,%d)",app.DigitalOutputsIndexEditField.Value,app.DOStatusDropDown.Value));
-            write(app.DashboardClient,"DOExecute("+app.DigitalOutputsIndexEditField.Value+","+app.DOStatusDropDown.Value+")","char");
-            pause(1);
-            res=read(app.DashboardClient,app.DashboardClient.NumBytesAvailable);
-            app.LogTextArea.Value{end+1}=char(sprintf("Receive:%s",res));
-        end
-
         % Button pushed function: MovJButton
         function MovJButtonPushed(app, event)
-            app.LogTextArea.Value{end+1}=char(sprintf("Send:MovJ(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.RXEditField.Value,app.RYEditField.Value,app.RZEditField.Value));
-            write(app.MoveClient,"MovJ("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.RXEditField.Value+","+app.RYEditField.Value+","+app.RZEditField.Valuec+")","char");
+            app.LogTextArea.Value{end+1}=char(sprintf("Send:MovJ(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.REditField.Value));
+            write(app.MoveClient,"MovJ("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.REditField.Value+")","char");
         end
 
         % Button pushed function: MovLButton
         function MovLButtonPushed(app, event)
-            app.LogTextArea.Value{end+1}=char(sprintf("Send:MovL(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.RXEditField.Value,app.RYEditField.Value,app.RZEditField.Value));
-            write(app.MoveClient,"MovL("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.RXEditField.Value+","+app.RYEditField.Value+","+app.RZEditField.Valuec+")","char");
+            app.LogTextArea.Value{end+1}=char(sprintf("Send:MovL(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.REditField.Value));
+            write(app.MoveClient,"MovL("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.REditField.Value+")","char");
         end
 
         % Button pushed function: JointMovJButton
         function JointMovJButtonPushed(app, event)
-            app.LogTextArea.Value{end+1}=char(sprintf("Send:JointMovJ(%f,%f,%f,%f,%f,%f)",app.J1EditField.Value,app.J2EditField.Value,app.J3EditField.Value,app.J4EditField.Value,app.J5EditField.Value,app.J6EditField.Value));
-            write(app.MoveClient,"JointMovJ("+app.J1EditField.Value+","+app.J2EditField.Value+","+app.J3EditField.Value+","+app.J4EditField.Value+","+app.J5EditField.Value+","+app.J6EditField.Value+")","char");
+            app.LogTextArea.Value{end+1}=char(sprintf("Send:JointMovJ(%f,%f,%f,%f)",app.J1EditField.Value,app.J2EditField.Value,app.J3EditField.Value,app.J4EditField.Value));
+            write(app.MoveClient,"JointMovJ("+app.J1EditField.Value+","+app.J2EditField.Value+","+app.J3EditField.Value+","+app.J4EditField.Value+")","char");
         end
 
         % Button pushed function: StopMoveButton
@@ -450,35 +407,6 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.Label.Position = [514 57 25 22];
             app.Label.Text = '%';
 
-            % Create DigitalOutputsIndexLabel
-            app.DigitalOutputsIndexLabel = uilabel(app.DashBoardFunctionPanel);
-            app.DigitalOutputsIndexLabel.Position = [23 11 124 22];
-            app.DigitalOutputsIndexLabel.Text = 'Digital Outputs: Index:';
-
-            % Create DigitalOutputsIndexEditField
-            app.DigitalOutputsIndexEditField = uieditfield(app.DashBoardFunctionPanel, 'text');
-            app.DigitalOutputsIndexEditField.Position = [146 9 49 27];
-            app.DigitalOutputsIndexEditField.Value = '1';
-
-            % Create StatusDropDownLabel
-            app.StatusDropDownLabel = uilabel(app.DashBoardFunctionPanel);
-            app.StatusDropDownLabel.HorizontalAlignment = 'right';
-            app.StatusDropDownLabel.Position = [240 11 43 22];
-            app.StatusDropDownLabel.Text = 'Status:';
-
-            % Create DOStatusDropDown
-            app.DOStatusDropDown = uidropdown(app.DashBoardFunctionPanel);
-            app.DOStatusDropDown.Items = {'ON', 'OFF'};
-            app.DOStatusDropDown.ItemsData = [1 0];
-            app.DOStatusDropDown.Position = [298 11 100 22];
-            app.DOStatusDropDown.Value = 0;
-
-            % Create DOConfirmButton
-            app.DOConfirmButton = uibutton(app.DashBoardFunctionPanel, 'push');
-            app.DOConfirmButton.ButtonPushedFcn = createCallbackFcn(app, @DOConfirmButtonPushed, true);
-            app.DOConfirmButton.Position = [439 11 100 22];
-            app.DOConfirmButton.Text = 'Confirm';
-
             % Create SpeedConfirmButton
             app.SpeedConfirmButton = uibutton(app.DashBoardFunctionPanel, 'push');
             app.SpeedConfirmButton.ButtonPushedFcn = createCallbackFcn(app, @SpeedConfirmButtonPushed, true);
@@ -523,38 +451,16 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.ZEditField.Limits = [-9999 9999];
             app.ZEditField.Position = [303 93 46 22];
 
-            % Create RXEditFieldLabel
-            app.RXEditFieldLabel = uilabel(app.MoveFunctionPanel);
-            app.RXEditFieldLabel.HorizontalAlignment = 'right';
-            app.RXEditFieldLabel.Position = [382 93 26 22];
-            app.RXEditFieldLabel.Text = 'RX:';
+            % Create REditFieldLabel
+            app.REditFieldLabel = uilabel(app.MoveFunctionPanel);
+            app.REditFieldLabel.HorizontalAlignment = 'right';
+            app.REditFieldLabel.Position = [383 93 25 22];
+            app.REditFieldLabel.Text = 'R:';
 
-            % Create RXEditField
-            app.RXEditField = uieditfield(app.MoveFunctionPanel, 'numeric');
-            app.RXEditField.Limits = [-9999 9999];
-            app.RXEditField.Position = [423 93 46 22];
-
-            % Create RYEditFieldLabel
-            app.RYEditFieldLabel = uilabel(app.MoveFunctionPanel);
-            app.RYEditFieldLabel.HorizontalAlignment = 'right';
-            app.RYEditFieldLabel.Position = [512 93 25 22];
-            app.RYEditFieldLabel.Text = 'RY:';
-
-            % Create RYEditField
-            app.RYEditField = uieditfield(app.MoveFunctionPanel, 'numeric');
-            app.RYEditField.Limits = [-9999 9999];
-            app.RYEditField.Position = [552 93 46 22];
-
-            % Create RZEditFieldLabel
-            app.RZEditFieldLabel = uilabel(app.MoveFunctionPanel);
-            app.RZEditFieldLabel.HorizontalAlignment = 'right';
-            app.RZEditFieldLabel.Position = [635 93 25 22];
-            app.RZEditFieldLabel.Text = 'RZ:';
-
-            % Create RZEditField
-            app.RZEditField = uieditfield(app.MoveFunctionPanel, 'numeric');
-            app.RZEditField.Limits = [-9999 9999];
-            app.RZEditField.Position = [675 93 46 22];
+            % Create REditField
+            app.REditField = uieditfield(app.MoveFunctionPanel, 'numeric');
+            app.REditField.Limits = [-9999 9999];
+            app.REditField.Position = [423 93 46 22];
 
             % Create J1EditFieldLabel
             app.J1EditFieldLabel = uilabel(app.MoveFunctionPanel);
@@ -600,50 +506,28 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.J4EditField.Limits = [-9999 9999];
             app.J4EditField.Position = [423 52 46 22];
 
-            % Create J5EditFieldLabel
-            app.J5EditFieldLabel = uilabel(app.MoveFunctionPanel);
-            app.J5EditFieldLabel.HorizontalAlignment = 'right';
-            app.J5EditFieldLabel.Position = [512 52 25 22];
-            app.J5EditFieldLabel.Text = 'J5:';
-
-            % Create J5EditField
-            app.J5EditField = uieditfield(app.MoveFunctionPanel, 'numeric');
-            app.J5EditField.Limits = [-9999 9999];
-            app.J5EditField.Position = [552 52 46 22];
-
-            % Create J6EditFieldLabel
-            app.J6EditFieldLabel = uilabel(app.MoveFunctionPanel);
-            app.J6EditFieldLabel.HorizontalAlignment = 'right';
-            app.J6EditFieldLabel.Position = [635 52 25 22];
-            app.J6EditFieldLabel.Text = 'J6:';
-
-            % Create J6EditField
-            app.J6EditField = uieditfield(app.MoveFunctionPanel, 'numeric');
-            app.J6EditField.Limits = [-9999 9999];
-            app.J6EditField.Position = [675 52 46 22];
-
             % Create MovJButton
             app.MovJButton = uibutton(app.MoveFunctionPanel, 'push');
             app.MovJButton.ButtonPushedFcn = createCallbackFcn(app, @MovJButtonPushed, true);
-            app.MovJButton.Position = [770 93 100 22];
+            app.MovJButton.Position = [498 93 100 22];
             app.MovJButton.Text = 'MovJ';
 
             % Create MovLButton
             app.MovLButton = uibutton(app.MoveFunctionPanel, 'push');
             app.MovLButton.ButtonPushedFcn = createCallbackFcn(app, @MovLButtonPushed, true);
-            app.MovLButton.Position = [914 93 100 22];
+            app.MovLButton.Position = [642 93 100 22];
             app.MovLButton.Text = 'MovL';
 
             % Create JointMovJButton
             app.JointMovJButton = uibutton(app.MoveFunctionPanel, 'push');
             app.JointMovJButton.ButtonPushedFcn = createCallbackFcn(app, @JointMovJButtonPushed, true);
-            app.JointMovJButton.Position = [771 52 100 22];
+            app.JointMovJButton.Position = [499 52 100 22];
             app.JointMovJButton.Text = 'JointMovJ';
 
             % Create StopMoveButton
             app.StopMoveButton = uibutton(app.MoveFunctionPanel, 'push');
             app.StopMoveButton.ButtonPushedFcn = createCallbackFcn(app, @StopMoveButtonPushed, true);
-            app.StopMoveButton.Position = [913 52 100 22];
+            app.StopMoveButton.Position = [641 52 100 22];
             app.StopMoveButton.Text = 'Stop Move';
 
             % Create FeedbackPanel
@@ -675,18 +559,6 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.j4MinusButton.Position = [10 162 55 22];
             app.j4MinusButton.Text = 'j4-';
 
-            % Create j5MinusButton
-            app.j5MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j5MinusButton.Tag = 'j5-';
-            app.j5MinusButton.Position = [10 128 55 22];
-            app.j5MinusButton.Text = 'j5-';
-
-            % Create j6MinusButton
-            app.j6MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j6MinusButton.Tag = 'j6-';
-            app.j6MinusButton.Position = [10 94 55 22];
-            app.j6MinusButton.Text = 'j6-';
-
             % Create j1PlusButton
             app.j1PlusButton = uibutton(app.FeedbackPanel, 'push');
             app.j1PlusButton.Tag = 'j1+';
@@ -710,18 +582,6 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.j4PlusButton.Tag = 'j4+';
             app.j4PlusButton.Position = [167 162 55 22];
             app.j4PlusButton.Text = 'j4+';
-
-            % Create j5PlusButton
-            app.j5PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j5PlusButton.Tag = 'j5+';
-            app.j5PlusButton.Position = [167 128 55 22];
-            app.j5PlusButton.Text = 'j5+';
-
-            % Create j6PlusButton
-            app.j6PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j6PlusButton.Tag = 'j6+';
-            app.j6PlusButton.Position = [167 94 55 22];
-            app.j6PlusButton.Text = 'j6+';
 
             % Create ErrorInfoPanel
             app.ErrorInfoPanel = uipanel(app.FeedbackPanel);
@@ -757,23 +617,11 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.zMinusButton.Position = [249 196 55 22];
             app.zMinusButton.Text = 'z-';
 
-            % Create rxMinusButton
-            app.rxMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rxMinusButton.Tag = 'rx-';
-            app.rxMinusButton.Position = [249 162 55 22];
-            app.rxMinusButton.Text = 'rx-';
-
-            % Create ryMinusButton
-            app.ryMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.ryMinusButton.Tag = 'ry-';
-            app.ryMinusButton.Position = [249 128 55 22];
-            app.ryMinusButton.Text = 'ry-';
-
-            % Create rzMinusButton
-            app.rzMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rzMinusButton.Tag = 'rz-';
-            app.rzMinusButton.Position = [249 94 55 22];
-            app.rzMinusButton.Text = 'rz-';
+            % Create rMinusButton
+            app.rMinusButton = uibutton(app.FeedbackPanel, 'push');
+            app.rMinusButton.Tag = 'rx-';
+            app.rMinusButton.Position = [249 162 55 22];
+            app.rMinusButton.Text = 'r-';
 
             % Create xPlusButton
             app.xPlusButton = uibutton(app.FeedbackPanel, 'push');
@@ -793,23 +641,11 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.zPlusButton.Position = [404 196 55 22];
             app.zPlusButton.Text = 'z+';
 
-            % Create rxPlusButton
-            app.rxPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rxPlusButton.Tag = 'rx+';
-            app.rxPlusButton.Position = [404 162 55 22];
-            app.rxPlusButton.Text = 'rx+';
-
-            % Create ryPlusButton
-            app.ryPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.ryPlusButton.Tag = 'ry+';
-            app.ryPlusButton.Position = [404 128 55 22];
-            app.ryPlusButton.Text = 'ry+';
-
-            % Create rzPlusButton
-            app.rzPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rzPlusButton.Tag = 'rz+';
-            app.rzPlusButton.Position = [404 94 55 22];
-            app.rzPlusButton.Text = 'rz+';
+            % Create rPlusButton
+            app.rPlusButton = uibutton(app.FeedbackPanel, 'push');
+            app.rPlusButton.Tag = 'rx+';
+            app.rPlusButton.Position = [404 162 55 22];
+            app.rPlusButton.Text = 'r+';
 
             % Create J1Text
             app.J1Text = uilabel(app.FeedbackPanel);
@@ -835,18 +671,6 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.J4Text.Position = [67 162 99 22];
             app.J4Text.Text = '0.0';
 
-            % Create J5Text
-            app.J5Text = uilabel(app.FeedbackPanel);
-            app.J5Text.HorizontalAlignment = 'center';
-            app.J5Text.Position = [67 128 99 22];
-            app.J5Text.Text = '0.0';
-
-            % Create J6Text
-            app.J6Text = uilabel(app.FeedbackPanel);
-            app.J6Text.HorizontalAlignment = 'center';
-            app.J6Text.Position = [67 94 99 22];
-            app.J6Text.Text = '0.0';
-
             % Create xText
             app.xText = uilabel(app.FeedbackPanel);
             app.xText.HorizontalAlignment = 'center';
@@ -865,23 +689,11 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.zText.Position = [307 196 98 22];
             app.zText.Text = '0.0';
 
-            % Create rxText
-            app.rxText = uilabel(app.FeedbackPanel);
-            app.rxText.HorizontalAlignment = 'center';
-            app.rxText.Position = [307 162 98 22];
-            app.rxText.Text = '0.0';
-
-            % Create ryText
-            app.ryText = uilabel(app.FeedbackPanel);
-            app.ryText.HorizontalAlignment = 'center';
-            app.ryText.Position = [307 128 98 22];
-            app.ryText.Text = '0.0';
-
-            % Create rzText
-            app.rzText = uilabel(app.FeedbackPanel);
-            app.rzText.HorizontalAlignment = 'center';
-            app.rzText.Position = [306 94 99 22];
-            app.rzText.Text = '0.0';
+            % Create rText
+            app.rText = uilabel(app.FeedbackPanel);
+            app.rText.HorizontalAlignment = 'center';
+            app.rText.Position = [307 162 98 22];
+            app.rText.Text = '0.0';
 
             % Create RobotModeLabel
             app.RobotModeLabel = uilabel(app.FeedbackPanel);
@@ -892,16 +704,6 @@ classdef CRMATLABDemo < matlab.apps.AppBase
             app.CurrentSpeedRatioLabel = uilabel(app.FeedbackPanel);
             app.CurrentSpeedRatioLabel.Position = [12 323 251 22];
             app.CurrentSpeedRatioLabel.Text = 'Current Speed Ratio:';
-
-            % Create DigitalOutputsLabel
-            app.DigitalOutputsLabel = uilabel(app.FeedbackPanel);
-            app.DigitalOutputsLabel.Position = [12 19 251 22];
-            app.DigitalOutputsLabel.Text = 'Digital Outputs:';
-
-            % Create DigitalInputsLabel
-            app.DigitalInputsLabel = uilabel(app.FeedbackPanel);
-            app.DigitalInputsLabel.Position = [12 48 251 22];
-            app.DigitalInputsLabel.Text = 'Digital Inputs:';
 
             % Create LogPanel
             app.LogPanel = uipanel(app.UIFigure);
@@ -922,7 +724,7 @@ classdef CRMATLABDemo < matlab.apps.AppBase
     methods (Access = public)
 
         % Construct app
-        function app = CRMATLABDemo
+        function app = CRMATLABDemo_mg400
 
             % Create UIFigure and components
             createComponents(app)
