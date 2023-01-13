@@ -312,19 +312,20 @@ classdef CRMATLABDemo < matlab.apps.AppBase
         % Button pushed function: MovJButton
         function MovJButtonPushed(app, event)
             app.LogTextArea.Value{end+1}=char(sprintf("Send:MovJ(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.RXEditField.Value,app.RYEditField.Value,app.RZEditField.Value));
-            write(app.MoveClient,"MovJ("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.RXEditField.Value+","+app.RYEditField.Value+","+app.RZEditField.Valuec+")","char");
+            write(app.MoveClient,"MovJ("+double(app.XEditField.Value)+","+double(app.YEditField.Value)+","+double(app.ZEditField.Value)+","+double(app.RXEditField.Value)+","+double(app.RYEditField.Value)+","+double(app.RZEditField.Value)+")","char");
         end
 
         % Button pushed function: MovLButton
         function MovLButtonPushed(app, event)
             app.LogTextArea.Value{end+1}=char(sprintf("Send:MovL(%f,%f,%f,%f,%f,%f)",app.XEditField.Value,app.YEditField.Value,app.ZEditField.Value,app.RXEditField.Value,app.RYEditField.Value,app.RZEditField.Value));
-            write(app.MoveClient,"MovL("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.RXEditField.Value+","+app.RYEditField.Value+","+app.RZEditField.Valuec+")","char");
+            disp("MovL("+app.XEditField.Value+","+app.YEditField.Value+","+app.ZEditField.Value+","+app.RXEditField.Value+","+app.RYEditField.Value+","+app.RZEditField.Value+")")
+            write(app.MoveClient,"MovL("+double(app.XEditField.Value)+","+double(app.YEditField.Value)+","+double(app.ZEditField.Value)+","+double(app.RXEditField.Value)+","+double(app.RYEditField.Value)+","+double(app.RZEditField.Value)+")","char");
         end
 
         % Button pushed function: JointMovJButton
         function JointMovJButtonPushed(app, event)
             app.LogTextArea.Value{end+1}=char(sprintf("Send:JointMovJ(%f,%f,%f,%f,%f,%f)",app.J1EditField.Value,app.J2EditField.Value,app.J3EditField.Value,app.J4EditField.Value,app.J5EditField.Value,app.J6EditField.Value));
-            write(app.MoveClient,"JointMovJ("+app.J1EditField.Value+","+app.J2EditField.Value+","+app.J3EditField.Value+","+app.J4EditField.Value+","+app.J5EditField.Value+","+app.J6EditField.Value+")","char");
+            write(app.MoveClient,"JointMovJ("+double(app.J1EditField.Value)+","+double(app.J2EditField.Value)+","+double(app.J3EditField.Value)+","+double(app.J4EditField.Value)+","+double(app.J5EditField.Value)+","+double(app.J6EditField.Value)+")","char");
         end
 
         % Button pushed function: StopMoveButton
@@ -653,73 +654,73 @@ classdef CRMATLABDemo < matlab.apps.AppBase
 
             % Create j1MinusButton
             app.j1MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j1MinusButton.Tag = 'j1-';
+            app.j1MinusButton.Tag = 'J1-';
             app.j1MinusButton.Position = [10 264 55 22];
             app.j1MinusButton.Text = 'j1-';
 
             % Create j2MinusButton
             app.j2MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j2MinusButton.Tag = 'j2-';
+            app.j2MinusButton.Tag = 'J2-';
             app.j2MinusButton.Position = [10 230 55 22];
             app.j2MinusButton.Text = 'j2-';
 
             % Create j3MinusButton
             app.j3MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j3MinusButton.Tag = 'j3-';
+            app.j3MinusButton.Tag = 'J3-';
             app.j3MinusButton.Position = [10 196 55 22];
             app.j3MinusButton.Text = 'j3-';
 
             % Create j4MinusButton
             app.j4MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j4MinusButton.Tag = 'j4-';
+            app.j4MinusButton.Tag = 'J4-';
             app.j4MinusButton.Position = [10 162 55 22];
             app.j4MinusButton.Text = 'j4-';
 
             % Create j5MinusButton
             app.j5MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j5MinusButton.Tag = 'j5-';
+            app.j5MinusButton.Tag = 'J5-';
             app.j5MinusButton.Position = [10 128 55 22];
             app.j5MinusButton.Text = 'j5-';
 
             % Create j6MinusButton
             app.j6MinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j6MinusButton.Tag = 'j6-';
+            app.j6MinusButton.Tag = 'J6-';
             app.j6MinusButton.Position = [10 94 55 22];
             app.j6MinusButton.Text = 'j6-';
 
             % Create j1PlusButton
             app.j1PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j1PlusButton.Tag = 'j1+';
+            app.j1PlusButton.Tag = 'J1+';
             app.j1PlusButton.Position = [165 264 55 22];
             app.j1PlusButton.Text = 'j1+';
 
             % Create j2PlusButton
             app.j2PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j2PlusButton.Tag = 'j2+';
+            app.j2PlusButton.Tag = 'J2+';
             app.j2PlusButton.Position = [167 230 55 22];
             app.j2PlusButton.Text = 'j2+';
 
             % Create j3PlusButton
             app.j3PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j3PlusButton.Tag = 'j3+';
+            app.j3PlusButton.Tag = 'J3+';
             app.j3PlusButton.Position = [167 196 55 22];
             app.j3PlusButton.Text = 'j3+';
 
             % Create j4PlusButton
             app.j4PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j4PlusButton.Tag = 'j4+';
+            app.j4PlusButton.Tag = 'J4+';
             app.j4PlusButton.Position = [167 162 55 22];
             app.j4PlusButton.Text = 'j4+';
 
             % Create j5PlusButton
             app.j5PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j5PlusButton.Tag = 'j5+';
+            app.j5PlusButton.Tag = 'J5+';
             app.j5PlusButton.Position = [167 128 55 22];
             app.j5PlusButton.Text = 'j5+';
 
             % Create j6PlusButton
             app.j6PlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.j6PlusButton.Tag = 'j6+';
+            app.j6PlusButton.Tag = 'J6+';
             app.j6PlusButton.Position = [167 94 55 22];
             app.j6PlusButton.Text = 'j6+';
 
@@ -741,73 +742,73 @@ classdef CRMATLABDemo < matlab.apps.AppBase
 
             % Create xMinusButton
             app.xMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.xMinusButton.Tag = 'x-';
+            app.xMinusButton.Tag = 'X-';
             app.xMinusButton.Position = [249 264 55 22];
             app.xMinusButton.Text = 'x-';
 
             % Create yMinusButton
             app.yMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.yMinusButton.Tag = 'y-';
+            app.yMinusButton.Tag = 'Y-';
             app.yMinusButton.Position = [249 230 55 22];
             app.yMinusButton.Text = 'y-';
 
             % Create zMinusButton
             app.zMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.zMinusButton.Tag = 'z-';
+            app.zMinusButton.Tag = 'Z-';
             app.zMinusButton.Position = [249 196 55 22];
             app.zMinusButton.Text = 'z-';
 
             % Create rxMinusButton
             app.rxMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rxMinusButton.Tag = 'rx-';
+            app.rxMinusButton.Tag = 'Rx-';
             app.rxMinusButton.Position = [249 162 55 22];
             app.rxMinusButton.Text = 'rx-';
 
             % Create ryMinusButton
             app.ryMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.ryMinusButton.Tag = 'ry-';
+            app.ryMinusButton.Tag = 'Ry-';
             app.ryMinusButton.Position = [249 128 55 22];
             app.ryMinusButton.Text = 'ry-';
 
             % Create rzMinusButton
             app.rzMinusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rzMinusButton.Tag = 'rz-';
+            app.rzMinusButton.Tag = 'Rz-';
             app.rzMinusButton.Position = [249 94 55 22];
             app.rzMinusButton.Text = 'rz-';
 
             % Create xPlusButton
             app.xPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.xPlusButton.Tag = 'x+';
+            app.xPlusButton.Tag = 'X+';
             app.xPlusButton.Position = [404 264 55 22];
             app.xPlusButton.Text = 'x+';
 
             % Create yPlusButton
             app.yPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.yPlusButton.Tag = 'y+';
+            app.yPlusButton.Tag = 'Y+';
             app.yPlusButton.Position = [404 230 55 22];
             app.yPlusButton.Text = 'y+';
 
             % Create zPlusButton
             app.zPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.zPlusButton.Tag = 'z+';
+            app.zPlusButton.Tag = 'Z+';
             app.zPlusButton.Position = [404 196 55 22];
             app.zPlusButton.Text = 'z+';
 
             % Create rxPlusButton
             app.rxPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rxPlusButton.Tag = 'rx+';
+            app.rxPlusButton.Tag = 'Rx+';
             app.rxPlusButton.Position = [404 162 55 22];
             app.rxPlusButton.Text = 'rx+';
 
             % Create ryPlusButton
             app.ryPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.ryPlusButton.Tag = 'ry+';
+            app.ryPlusButton.Tag = 'Ry+';
             app.ryPlusButton.Position = [404 128 55 22];
             app.ryPlusButton.Text = 'ry+';
 
             % Create rzPlusButton
             app.rzPlusButton = uibutton(app.FeedbackPanel, 'push');
-            app.rzPlusButton.Tag = 'rz+';
+            app.rzPlusButton.Tag = 'Rz+';
             app.rzPlusButton.Position = [404 94 55 22];
             app.rzPlusButton.Text = 'rz+';
 
